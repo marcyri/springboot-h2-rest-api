@@ -1,45 +1,35 @@
 package com.moan.pet.moanHealthPrj.persistance.mapper;
 
-
 import com.moan.pet.moanHealthPrj.domain.model.Attendance;
 import com.moan.pet.moanHealthPrj.domain.model.Patient;
 import com.moan.pet.moanHealthPrj.persistance.entity.AttendanceEntity;
 import com.moan.pet.moanHealthPrj.persistance.entity.PatientEntity;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Component
 public class AttendanceMapper {
-    private final ModelMapper modelMapper;
+    private final AttendanceMapStruct mapper;
 
-    public AttendanceMapper(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
+    public AttendanceMapper(AttendanceMapStruct mapper) {
+        this.mapper = mapper;
     }
 
     public Attendance convert(AttendanceEntity attendanceEntity) {
-        return modelMapper.map(attendanceEntity, Attendance.class);
+        return mapper.attendanceEntityToAttendance(attendanceEntity);
     }
 
     public AttendanceEntity convert(Attendance attendance) {
-        return modelMapper.map(attendance, AttendanceEntity.class);
+        return mapper.attendanceToAttendanceEntity(attendance);
     }
 
-    public List<Attendance> convert(List<AttendanceEntity> attendances) {
-        return attendances.stream()
-                .map(attendance -> {
-                    Attendance curAttendance = convert(attendance);
-                    curAttendance.setPatients(convert(attendance.getPatients()));
-                    return curAttendance;
-                })
-                .collect(Collectors.toList());
+    public List<Attendance> convert(List<AttendanceEntity> attendanceEntities) {
+        return mapper.attendanceEntityToAttendance(attendanceEntities);
     }
 
-    public Set<Patient> convert(Set<PatientEntity> patients) {
-        return modelMapper.map(patients, new TypeToken<Set<Patient>>() {}.getType());
+    public Optional<Attendance> convert(Optional<AttendanceEntity> attendanceEntity) {
+        return mapper.attendanceEntityToAttendance(attendanceEntity);
     }
 }
