@@ -1,18 +1,12 @@
 package com.moan.pet.moanHealthPrj.app.dto;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@Data
 public class AttendanceDTO extends RepresentationModel<AttendanceDTO> {
     private Long id;
 

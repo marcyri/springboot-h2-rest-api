@@ -2,6 +2,8 @@ package com.moan.pet.moanHealthPrj.app.controller.api;
 
 import com.moan.pet.moanHealthPrj.app.dto.AttendanceDTO;
 import com.moan.pet.moanHealthPrj.app.dto.PatientDTO;
+import com.moan.pet.moanHealthPrj.app.mapper.AttendanceMapper;
+import com.moan.pet.moanHealthPrj.app.mapper.PatientMapper;
 import com.moan.pet.moanHealthPrj.domain.services.IAttendanceService;
 import com.moan.pet.moanHealthPrj.domain.services.IPatientService;
 import org.springframework.hateoas.CollectionModel;
@@ -18,21 +20,25 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-
 @RestController
 @RequestMapping("/api/patient")
 public class PatientController {
     private final IPatientService patientService;
     private final IAttendanceService attendanceService;
+    private final PatientMapper patientMapper;
+    private final AttendanceMapper attendanceMapper;
 
-    PatientController(IPatientService patientService, IAttendanceService attendanceService) {
+    PatientController(IPatientService patientService, IAttendanceService attendanceService,
+                      PatientMapper patientMapper, AttendanceMapper attendanceMapper) {
         this.patientService = patientService;
         this.attendanceService = attendanceService;
+        this.patientMapper = patientMapper;
+        this.attendanceMapper = attendanceMapper;
     }
 
     @GetMapping(produces = { "application/hal+json" })
     ResponseEntity<CollectionModel<PatientDTO>> all() {
-        List<PatientDTO> patients = patientService.getAllWithNested();
+        List<PatientDTO> patients = patientMapper.convert(patientService.getAll());
         for (PatientDTO patient : patients) {
             Long patientId = patient.getId();
             Link selfLink = linkTo(PatientController.class).slash(patientId).withSelfRel();
@@ -51,7 +57,7 @@ public class PatientController {
 
     @GetMapping(value = "/{patientId}", produces = { "application/hal+json" })
     ResponseEntity<PatientDTO> one(@PathVariable Long patientId) {
-        PatientDTO patient = patientService.getOneById(patientId);
+        PatientDTO patient = patientMapper.convert(patientService.getOneById(patientId));
         Link selfLink = linkTo(PatientController.class).slash(patientId).withSelfRel();
         patient.add(selfLink);
         Link link = linkTo(methodOn(PatientController.class).all()).withRel("allPatients");
@@ -61,7 +67,7 @@ public class PatientController {
 
     @GetMapping(value = "/{patientId}/attendances", produces = { "application/hal+json" })
     public ResponseEntity<CollectionModel<AttendanceDTO>> getAttendancesForPatient(@PathVariable final Long patientId) {
-        List<AttendanceDTO> attendances = attendanceService.findByPatientId(patientId);
+        List<AttendanceDTO> attendances = attendanceMapper.convert(attendanceService.findByPatientId(patientId));
         for (final AttendanceDTO attendance : attendances) {
             Link selfLink = linkTo(methodOn(AttendanceController.class)
                     .one(attendance.getId())).withSelfRel();

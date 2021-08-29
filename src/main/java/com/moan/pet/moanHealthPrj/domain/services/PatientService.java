@@ -1,9 +1,8 @@
 package com.moan.pet.moanHealthPrj.domain.services;
 
-import com.moan.pet.moanHealthPrj.app.dto.PatientDTO;
 import com.moan.pet.moanHealthPrj.app.exception.NotFoundException;
 import com.moan.pet.moanHealthPrj.app.exception.PatientNotFoundException;
-import com.moan.pet.moanHealthPrj.domain.mapper.PatientMapper;
+import com.moan.pet.moanHealthPrj.app.mapper.PatientMapper;
 import com.moan.pet.moanHealthPrj.domain.model.Patient;
 import com.moan.pet.moanHealthPrj.domain.repository.IPatientRepository;
 import org.springframework.stereotype.Service;
@@ -22,28 +21,19 @@ public class PatientService implements IPatientService {
     }
 
     @Override
-    public List<PatientDTO> getAll() {
-        // TODO: check when repository.findAll() returns empty nested entities
-        return patientMapper.convert(patientRepository.findAll());
+    public List<Patient> getAll() {
+        return patientRepository.findAll();
     }
 
     @Override
-    public List<PatientDTO> getAllWithNested() {
-        return patientMapper.convert(patientRepository.findAllWithNestedAttendances());
-    }
-
-    @Override
-    public PatientDTO getOneById(Long id) {
-        Patient patient = patientRepository.findById(id)
+    public Patient getOneById(Long id) {
+        return patientRepository.findById(id)
                 .orElseThrow(() -> new PatientNotFoundException(id));
-        return patientMapper.convert(patient);
     }
 
     @Override
-    public List<PatientDTO> findByAttendanceId(Long attendanceId) {
-        List<Patient> patients = Optional.of(patientRepository.getPatientsByAttendanceId(attendanceId))
+    public List<Patient> findByAttendanceId(Long attendanceId) {
+        return Optional.of(patientRepository.getPatientsByAttendanceId(attendanceId))
                 .orElseThrow(() -> new NotFoundException("Patients for attendance with id " + attendanceId));
-
-        return patientMapper.convert(patients);
     }
 }

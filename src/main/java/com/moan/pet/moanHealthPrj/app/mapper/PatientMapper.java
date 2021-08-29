@@ -1,4 +1,4 @@
-package com.moan.pet.moanHealthPrj.domain.mapper;
+package com.moan.pet.moanHealthPrj.app.mapper;
 
 
 import com.moan.pet.moanHealthPrj.app.dto.AttendanceDTO;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Component("DomainPatientMapper")
+@Component("AppPatientMapper")
 public class PatientMapper {
     private final ModelMapper modelMapper;
 
@@ -51,6 +51,5 @@ public class PatientMapper {
                 .peek(System.out::println)
                 .collect(Collectors.toSet());
         return result;
-//        return modelMapper.map(attendances, new TypeToken<Set<AttendanceDTO>>() {}.getType());
     }
 }

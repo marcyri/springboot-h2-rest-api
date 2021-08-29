@@ -1,15 +1,13 @@
 package com.moan.pet.moanHealthPrj.domain.services;
 
-import com.moan.pet.moanHealthPrj.app.dto.PatientDTO;
+import com.moan.pet.moanHealthPrj.domain.model.Patient;
 
 import java.util.List;
 
 public interface IPatientService {
-    List<PatientDTO> getAll();
+    List<Patient> getAll();
 
-    List<PatientDTO> getAllWithNested();
+    Patient getOneById(Long id);
 
-    PatientDTO getOneById(Long id);
-
-    List<PatientDTO> findByAttendanceId(Long id);
+    List<Patient> findByAttendanceId(Long id);
 }

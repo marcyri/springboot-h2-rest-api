@@ -14,11 +14,6 @@ import java.util.Set;
 @Accessors(chain = true)
 @Entity
 @Table(name = "Patient")
-@NamedEntityGraphs(value = {
-        @NamedEntityGraph(name = "Patient.attendances", attributeNodes = {
-                @NamedAttributeNode("attendances")
-        })
-})
 public class PatientEntity extends BaseEntity {
 
     @Column

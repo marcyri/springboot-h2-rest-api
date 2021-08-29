@@ -1,4 +1,4 @@
-package com.moan.pet.moanHealthPrj.domain.mapper.custom;
+package com.moan.pet.moanHealthPrj.app.mapper.custom;
 
 import com.moan.pet.moanHealthPrj.app.dto.PatientDTO;
 import com.moan.pet.moanHealthPrj.persistance.entity.PatientEntity;

@@ -1,4 +1,4 @@
-package com.moan.pet.moanHealthPrj.domain.mapper;
+package com.moan.pet.moanHealthPrj.app.mapper;
 
 
 import com.moan.pet.moanHealthPrj.app.dto.AttendanceDTO;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Component("DomainAttendanceMapper")
+@Component("AppAttendanceMapper")
 public class AttendanceMapper {
     private final ModelMapper modelMapper;
 
