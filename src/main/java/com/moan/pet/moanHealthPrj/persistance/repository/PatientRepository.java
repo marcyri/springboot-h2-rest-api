@@ -1,17 +1,13 @@
 package com.moan.pet.moanHealthPrj.persistance.repository;
 
-import com.cosium.spring.data.jpa.entity.graph.domain.EntityGraphs;
 import com.moan.pet.moanHealthPrj.domain.model.Patient;
 import com.moan.pet.moanHealthPrj.domain.repository.IPatientRepository;
 import com.moan.pet.moanHealthPrj.persistance.dao.JpaPatientRepository;
-import com.moan.pet.moanHealthPrj.persistance.entity.PatientEntity;
 import com.moan.pet.moanHealthPrj.persistance.mapper.PatientMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Repository
 public class PatientRepository implements IPatientRepository {
@@ -28,13 +24,6 @@ public class PatientRepository implements IPatientRepository {
         return mapper.convert(patientDAO.findAll());
     }
 
-    @Override
-    public List<Patient> findAllWithNestedAttendances() {
-        List<PatientEntity> result =
-                StreamSupport.stream(patientDAO.findAll(EntityGraphs.named("Patient.attendances")).spliterator(), false)
-                        .collect(Collectors.toList());
-        return mapper.convert(result);
-    }
     @Override
     public Optional<Patient> findById(Long patientId) {
         return mapper.convert(patientDAO.findById(patientId));

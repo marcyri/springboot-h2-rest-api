@@ -1,6 +1,5 @@
 package com.moan.pet.moanHealthPrj.persistance.repository;
 
-import com.cosium.spring.data.jpa.entity.graph.domain.EntityGraphs;
 import com.moan.pet.moanHealthPrj.domain.model.Attendance;
 import com.moan.pet.moanHealthPrj.domain.repository.IAttendanceRepository;
 import com.moan.pet.moanHealthPrj.persistance.dao.JpaAttendanceRepository;
@@ -10,8 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Repository
 public class AttendanceRepository implements IAttendanceRepository {
@@ -26,14 +23,6 @@ public class AttendanceRepository implements IAttendanceRepository {
     @Override
     public List<Attendance> findAll() {
         return mapper.convert(attendanceDAO.findAll());
-    }
-
-    @Override
-    public List<Attendance> findAllWithNestedPatients() {
-        List<AttendanceEntity> result =
-                StreamSupport.stream(attendanceDAO.findAll(EntityGraphs.named("Attendance.patients")).spliterator(), false)
-                        .collect(Collectors.toList());
-        return mapper.convert(result);
     }
 
     @Override

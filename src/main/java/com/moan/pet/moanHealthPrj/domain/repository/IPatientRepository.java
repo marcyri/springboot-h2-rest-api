@@ -8,8 +8,6 @@ import java.util.Optional;
 public interface IPatientRepository {
     List<Patient> findAll();
 
-    List<Patient> findAllWithNestedAttendances();
-
     Optional<Patient> findById(Long id);
 
     List<Patient> getPatientsByAttendanceId(Long attendanceId);
