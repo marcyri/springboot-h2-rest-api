@@ -8,6 +8,7 @@ import com.moan.pet.moanHealthPrj.domain.model.Patient;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 import java.util.Set;
@@ -46,6 +47,9 @@ public class PatientMapper {
     }
 
     public Set<AttendanceDTO> convert(Set<Attendance> attendances) {
+        if (ObjectUtils.isEmpty(attendances)) {
+            return null;
+        }
         Set<AttendanceDTO> result = attendances.stream()
                 .map(attendance -> attendanceMapper.convert(attendance))
                 .peek(System.out::println)

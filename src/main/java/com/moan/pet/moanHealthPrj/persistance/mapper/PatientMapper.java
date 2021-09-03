@@ -23,8 +23,11 @@ public class PatientMapper {
         return mapper.patientEntityToPatient(patientEntity);
     }
 
-    // TODO: TBD
+    public Patient convert(PatientEntity patientEntity) {
+        return mapper.patientEntityToPatient(patientEntity);
+    }
+
     public PatientEntity convert(Patient patient) {
-        return null;
+        return mapper.patientToPatientEntity(patient);
     }
 }

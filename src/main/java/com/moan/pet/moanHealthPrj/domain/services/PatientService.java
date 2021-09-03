@@ -36,4 +36,9 @@ public class PatientService implements IPatientService {
         return Optional.of(patientRepository.getPatientsByAttendanceId(attendanceId))
                 .orElseThrow(() -> new NotFoundException("Patients for attendance with id " + attendanceId));
     }
+
+    @Override
+    public Patient create(Patient patient) {
+        return patientRepository.create(patient);
+    }
 }

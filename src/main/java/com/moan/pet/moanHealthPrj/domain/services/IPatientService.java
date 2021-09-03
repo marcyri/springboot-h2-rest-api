@@ -10,4 +10,6 @@ public interface IPatientService {
     Patient getOneById(Long id);
 
     List<Patient> findByAttendanceId(Long id);
+
+    Patient create(Patient patient);
 }

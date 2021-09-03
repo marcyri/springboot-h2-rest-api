@@ -45,7 +45,7 @@ public class AttendanceController {
             attendance.add(selfLink);
             if (attendance.getPatients().size() > 0) {
                 Link patientsLink = linkTo(methodOn(AttendanceController.class)
-                        .getPatientsForAttendance(attendanceId)).withRel("allPatients");
+                        .getPatientsForAttendance(attendanceId)).withRel("patients");
                 attendance.add(patientsLink);
             }
         }

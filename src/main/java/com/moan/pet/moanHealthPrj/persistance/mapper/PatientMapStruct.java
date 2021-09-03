@@ -35,4 +35,5 @@ public abstract class PatientMapStruct {
     @IterableMapping(qualifiedByName = "PatientIgnoreAttendances")
     public abstract Set<Patient> patientEntityToPatientIgnoreAttendances(Set<PatientEntity> patientEntities);
 
+    public abstract PatientEntity patientToPatientEntity(Patient patient);
 }

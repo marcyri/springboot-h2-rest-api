@@ -11,4 +11,6 @@ public interface IPatientRepository {
     Optional<Patient> findById(Long id);
 
     List<Patient> getPatientsByAttendanceId(Long attendanceId);
+
+    Patient create(Patient patient);
 }

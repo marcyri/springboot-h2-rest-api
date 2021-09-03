@@ -33,4 +33,9 @@ public class PatientRepository implements IPatientRepository {
     public List<Patient> getPatientsByAttendanceId(Long attendanceId) {
         return mapper.convert(patientDAO.findByAttendances_Id(attendanceId));
     }
+
+    @Override
+    public Patient create(Patient patient) {
+        return mapper.convert(patientDAO.save(mapper.convert(patient)));
+    }
 }
