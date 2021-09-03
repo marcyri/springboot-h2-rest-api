@@ -6,6 +6,7 @@ import com.moan.pet.moanHealthPrj.app.dto.PatientDTO;
 import com.moan.pet.moanHealthPrj.domain.model.Attendance;
 import com.moan.pet.moanHealthPrj.domain.model.Patient;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -30,17 +31,16 @@ public class PatientMapper {
     }
 
     public PatientDTO convert(Patient patient) {
-        PatientDTO curPatient = modelMapper.map(patient, PatientDTO.class);
-        curPatient.setAttendances(convert(patient.getAttendances()));
-        return curPatient;
+//        PatientDTO curPatientDTO = modelMapper.map(patient, PatientDTO.class);
+//        curPatientDTO.setAttendances(convert(patient.getAttendances()));
+//        return curPatientDTO;
+        return modelMapper.map(patient, PatientDTO.class);
     }
 
     public List<PatientDTO> convert(List<Patient> patients) {
         return patients.stream()
                 .map(patient -> {
                     PatientDTO curPatientDTO = convert(patient);
-
-                    curPatientDTO.setAttendances(convert(patient.getAttendances()));
                     return curPatientDTO;
                 })
                 .collect(Collectors.toList());
@@ -50,6 +50,8 @@ public class PatientMapper {
         if (ObjectUtils.isEmpty(attendances)) {
             return null;
         }
+        Set<AttendanceDTO> result1 = modelMapper.map(attendances, new TypeToken<Set<AttendanceDTO>>() {
+        }.getType());
         Set<AttendanceDTO> result = attendances.stream()
                 .map(attendance -> attendanceMapper.convert(attendance))
                 .peek(System.out::println)
