@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -35,5 +36,5 @@ public class PatientEntity extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "attendance_id"))
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<AttendanceEntity> attendances;
+    private Set<AttendanceEntity> attendances = new HashSet<>();
 }

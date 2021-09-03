@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -43,7 +44,8 @@ public class AttendanceController {
             Long attendanceId = attendance.getId();
             Link selfLink = linkTo(AttendanceController.class).slash(attendanceId).withSelfRel();
             attendance.add(selfLink);
-            if (attendance.getPatients().size() > 0) {
+            Set<PatientDTO> patients = attendance.getPatients();
+            if (patients != null && patients.size() > 0) {
                 Link patientsLink = linkTo(methodOn(AttendanceController.class)
                         .getPatientsForAttendance(attendanceId)).withRel("patients");
                 attendance.add(patientsLink);

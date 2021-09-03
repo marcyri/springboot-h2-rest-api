@@ -3,7 +3,6 @@ package com.moan.pet.moanHealthPrj.persistance.repository;
 import com.moan.pet.moanHealthPrj.domain.model.Attendance;
 import com.moan.pet.moanHealthPrj.domain.repository.IAttendanceRepository;
 import com.moan.pet.moanHealthPrj.persistance.dao.JpaAttendanceRepository;
-import com.moan.pet.moanHealthPrj.persistance.entity.AttendanceEntity;
 import com.moan.pet.moanHealthPrj.persistance.mapper.AttendanceMapper;
 import org.springframework.stereotype.Repository;
 
@@ -27,8 +26,7 @@ public class AttendanceRepository implements IAttendanceRepository {
 
     @Override
     public Optional<Attendance> findById(Long attendanceId) {
-        Optional<AttendanceEntity> attendanceEntity = attendanceDAO.findById(attendanceId);
-        return attendanceEntity.map(entity -> mapper.convert(entity));
+        return mapper.convert(attendanceDAO.findById(attendanceId));
     }
 
     @Override
