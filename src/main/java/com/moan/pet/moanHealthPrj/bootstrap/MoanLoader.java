@@ -4,6 +4,9 @@ import com.moan.pet.moanHealthPrj.domain.services.PatientService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+/**
+ * Used only to support any checking
+ */
 @Component
 public class MoanLoader implements CommandLineRunner {
     public final PatientService patientService;

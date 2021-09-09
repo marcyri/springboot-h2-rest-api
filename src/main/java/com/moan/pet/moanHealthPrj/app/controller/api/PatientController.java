@@ -5,6 +5,8 @@ import com.moan.pet.moanHealthPrj.app.dto.PatientDTO;
 import com.moan.pet.moanHealthPrj.app.mapper.AttendanceMapper;
 import com.moan.pet.moanHealthPrj.app.mapper.PatientMapper;
 import com.moan.pet.moanHealthPrj.domain.model.Patient;
+import com.moan.pet.moanHealthPrj.domain.services.DaoType;
+import com.moan.pet.moanHealthPrj.domain.services.DaoTypeHolder;
 import com.moan.pet.moanHealthPrj.domain.services.IAttendanceService;
 import com.moan.pet.moanHealthPrj.domain.services.IPatientService;
 import org.springframework.hateoas.CollectionModel;
@@ -35,9 +37,8 @@ public class PatientController {
         this.attendanceMapper = attendanceMapper;
     }
 
-    @GetMapping(produces = { "application/hal+json" })
-    ResponseEntity<CollectionModel<PatientDTO>> all() {
-        List<PatientDTO> patients = patientMapper.convert(patientService.getAll());
+
+    private ResponseEntity<CollectionModel<PatientDTO>> getAll(List<PatientDTO> patients) {
         for (PatientDTO patient : patients) {
             Long patientId = patient.getId();
             Link selfLink = linkTo(PatientController.class).slash(patientId).withSelfRel();
@@ -53,6 +54,20 @@ public class PatientController {
         CollectionModel<PatientDTO> result = CollectionModel.of(patients, link);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping(produces = { "application/hal+json" })
+    ResponseEntity<CollectionModel<PatientDTO>> all() {
+        DaoTypeHolder.setDaoType(DaoType.JPA);
+        List<PatientDTO> patients = patientMapper.convert(patientService.getAll());
+        return getAll(patients);
+    }
+
+    @GetMapping(produces = { "application/hal+json" }, headers = "dao=jdbc")
+    ResponseEntity<CollectionModel<PatientDTO>> allViaJdbc() {
+        DaoTypeHolder.setDaoType(DaoType.JDBC);
+        List<PatientDTO> patients = patientMapper.convert(patientService.getAll());
+        return getAll(patients);
     }
 
     @GetMapping(value = "/{patientId}", produces = { "application/hal+json" })

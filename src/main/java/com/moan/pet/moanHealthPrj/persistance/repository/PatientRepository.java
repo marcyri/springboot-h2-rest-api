@@ -2,40 +2,48 @@ package com.moan.pet.moanHealthPrj.persistance.repository;
 
 import com.moan.pet.moanHealthPrj.domain.model.Patient;
 import com.moan.pet.moanHealthPrj.domain.repository.IPatientRepository;
-import com.moan.pet.moanHealthPrj.persistance.dao.JpaPatientRepository;
+import com.moan.pet.moanHealthPrj.domain.services.DaoTypeHolder;
+import com.moan.pet.moanHealthPrj.domain.services.PatientDaoType;
+import com.moan.pet.moanHealthPrj.persistance.dao.IDao;
+import com.moan.pet.moanHealthPrj.persistance.entity.PatientEntity;
 import com.moan.pet.moanHealthPrj.persistance.mapper.PatientMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
 public class PatientRepository implements IPatientRepository {
-    private JpaPatientRepository patientDAO;
-    private PatientMapper mapper;
+    private final Map<String, IDao<PatientEntity, Long>> patientDAOs;
+    private final PatientMapper mapper;
 
-    public PatientRepository(JpaPatientRepository patientDAO, PatientMapper mapper) {
-        this.patientDAO = patientDAO;
+    public PatientRepository(Map<String, IDao<PatientEntity, Long>> patientDAOs, PatientMapper mapper) {
+        this.patientDAOs = patientDAOs;
         this.mapper = mapper;
+    }
+
+    private IDao<PatientEntity, Long> getDao() {
+        return patientDAOs.get(PatientDaoType.valueOf(DaoTypeHolder.getDaoType().toString()).getValue());
     }
 
     @Override
     public List<Patient> findAll() {
-        return mapper.convert(patientDAO.findAll());
+        return mapper.convert(getDao().findAll());
     }
 
     @Override
     public Optional<Patient> findById(Long patientId) {
-        return mapper.convert(patientDAO.findById(patientId));
+        return mapper.convert(getDao().findById(patientId));
     }
 
     @Override
     public List<Patient> getPatientsByAttendanceId(Long attendanceId) {
-        return mapper.convert(patientDAO.findByAttendances_Id(attendanceId));
+        return mapper.convert(getDao().findByAttendances_Id(attendanceId));
     }
 
     @Override
     public Patient create(Patient patient) {
-        return mapper.convert(patientDAO.save(mapper.convert(patient)));
+        return mapper.convert(getDao().save(mapper.convert(patient)));
     }
 }
