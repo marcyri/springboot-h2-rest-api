@@ -1,13 +1,12 @@
 package com.moan.pet.moanHealthPrj.app.dto;
 
 import lombok.Data;
-import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
-public class AttendanceDTO extends RepresentationModel<AttendanceDTO> {
+public class AttendanceDTO {
     private Long id;
 
     private LocalDateTime createdDtTm;

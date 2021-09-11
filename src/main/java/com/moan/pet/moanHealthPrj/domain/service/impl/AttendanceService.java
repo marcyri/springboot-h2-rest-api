@@ -1,10 +1,10 @@
-package com.moan.pet.moanHealthPrj.domain.services;
+package com.moan.pet.moanHealthPrj.domain.service.impl;
 
 import com.moan.pet.moanHealthPrj.app.exception.NotFoundException;
 import com.moan.pet.moanHealthPrj.app.exception.PatientNotFoundException;
-import com.moan.pet.moanHealthPrj.app.mapper.AttendanceMapper;
 import com.moan.pet.moanHealthPrj.domain.model.Attendance;
 import com.moan.pet.moanHealthPrj.domain.repository.IAttendanceRepository;
+import com.moan.pet.moanHealthPrj.domain.service.IAttendanceService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,12 +12,10 @@ import java.util.Optional;
 
 @Service
 public class AttendanceService implements IAttendanceService {
-    IAttendanceRepository attendanceRepository;
-    AttendanceMapper attendanceMapper;
+    private final IAttendanceRepository attendanceRepository;
 
-    public AttendanceService(IAttendanceRepository attendanceRepository, AttendanceMapper attendanceMapper) {
+    public AttendanceService(IAttendanceRepository attendanceRepository) {
         this.attendanceRepository = attendanceRepository;
-        this.attendanceMapper = attendanceMapper;
     }
 
     @Override

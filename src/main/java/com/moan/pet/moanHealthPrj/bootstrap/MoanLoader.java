@@ -1,6 +1,6 @@
 package com.moan.pet.moanHealthPrj.bootstrap;
 
-import com.moan.pet.moanHealthPrj.domain.services.PatientService;
+import com.moan.pet.moanHealthPrj.domain.service.impl.PatientService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

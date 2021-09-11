@@ -1,7 +1,7 @@
 package com.moan.pet.moanHealthPrj.app.controller.interceptor;
 
-import com.moan.pet.moanHealthPrj.domain.services.DaoType;
-import com.moan.pet.moanHealthPrj.domain.services.DaoTypeHolder;
+import com.moan.pet.moanHealthPrj.persistance.dao.helper.DaoType;
+import com.moan.pet.moanHealthPrj.persistance.dao.helper.DaoTypeHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.servlet.HandlerInterceptor;

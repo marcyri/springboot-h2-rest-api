@@ -1,10 +1,10 @@
-package com.moan.pet.moanHealthPrj.domain.services;
+package com.moan.pet.moanHealthPrj.domain.service.impl;
 
 import com.moan.pet.moanHealthPrj.app.exception.NotFoundException;
 import com.moan.pet.moanHealthPrj.app.exception.PatientNotFoundException;
-import com.moan.pet.moanHealthPrj.app.mapper.PatientMapper;
 import com.moan.pet.moanHealthPrj.domain.model.Patient;
 import com.moan.pet.moanHealthPrj.domain.repository.IPatientRepository;
+import com.moan.pet.moanHealthPrj.domain.service.IPatientService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,12 +12,10 @@ import java.util.Optional;
 
 @Service
 public class PatientService implements IPatientService {
-    IPatientRepository patientRepository;
-    PatientMapper patientMapper;
+    private final IPatientRepository patientRepository;
 
-    public PatientService(IPatientRepository patientRepository, PatientMapper patientMapper) {
+    public PatientService(IPatientRepository patientRepository) {
         this.patientRepository = patientRepository;
-        this.patientMapper = patientMapper;
     }
 
     @Override

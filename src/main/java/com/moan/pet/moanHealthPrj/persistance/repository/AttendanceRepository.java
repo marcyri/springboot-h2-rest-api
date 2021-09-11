@@ -11,8 +11,8 @@ import java.util.Optional;
 
 @Repository
 public class AttendanceRepository implements IAttendanceRepository {
-    private JpaAttendanceRepository attendanceDAO;
-    private AttendanceMapper mapper;
+    private final JpaAttendanceRepository attendanceDAO;
+    private final AttendanceMapper mapper;
 
     public AttendanceRepository(JpaAttendanceRepository attendanceDAO, AttendanceMapper mapper) {
         this.attendanceDAO = attendanceDAO;

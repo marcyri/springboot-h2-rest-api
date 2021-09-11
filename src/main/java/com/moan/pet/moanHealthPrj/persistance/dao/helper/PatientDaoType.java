@@ -1,4 +1,4 @@
-package com.moan.pet.moanHealthPrj.domain.services;
+package com.moan.pet.moanHealthPrj.persistance.dao.helper;
 
 public enum PatientDaoType {
     JPA("jpaPatientDao"),

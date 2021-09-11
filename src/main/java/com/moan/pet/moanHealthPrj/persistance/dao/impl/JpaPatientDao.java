@@ -1,5 +1,7 @@
-package com.moan.pet.moanHealthPrj.persistance.dao;
+package com.moan.pet.moanHealthPrj.persistance.dao.impl;
 
+import com.moan.pet.moanHealthPrj.persistance.dao.IDao;
+import com.moan.pet.moanHealthPrj.persistance.dao.JpaPatientRepository;
 import com.moan.pet.moanHealthPrj.persistance.entity.PatientEntity;
 import org.springframework.stereotype.Repository;
 

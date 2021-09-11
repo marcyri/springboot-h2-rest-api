@@ -1,4 +1,4 @@
-package com.moan.pet.moanHealthPrj.domain.services;
+package com.moan.pet.moanHealthPrj.persistance.dao.helper;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;

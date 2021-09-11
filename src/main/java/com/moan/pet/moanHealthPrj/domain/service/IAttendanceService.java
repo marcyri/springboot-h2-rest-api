@@ -1,4 +1,4 @@
-package com.moan.pet.moanHealthPrj.domain.services;
+package com.moan.pet.moanHealthPrj.domain.service;
 
 import com.moan.pet.moanHealthPrj.domain.model.Attendance;
 

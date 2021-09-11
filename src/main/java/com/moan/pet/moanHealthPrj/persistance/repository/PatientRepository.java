@@ -2,8 +2,8 @@ package com.moan.pet.moanHealthPrj.persistance.repository;
 
 import com.moan.pet.moanHealthPrj.domain.model.Patient;
 import com.moan.pet.moanHealthPrj.domain.repository.IPatientRepository;
-import com.moan.pet.moanHealthPrj.domain.services.DaoTypeHolder;
-import com.moan.pet.moanHealthPrj.domain.services.PatientDaoType;
+import com.moan.pet.moanHealthPrj.persistance.dao.helper.DaoTypeHolder;
+import com.moan.pet.moanHealthPrj.persistance.dao.helper.PatientDaoType;
 import com.moan.pet.moanHealthPrj.persistance.dao.IDao;
 import com.moan.pet.moanHealthPrj.persistance.entity.PatientEntity;
 import com.moan.pet.moanHealthPrj.persistance.mapper.PatientMapper;
