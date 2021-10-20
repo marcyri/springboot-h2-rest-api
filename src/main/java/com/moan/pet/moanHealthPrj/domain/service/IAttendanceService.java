@@ -10,4 +10,6 @@ public interface IAttendanceService {
     Attendance getOneById(Long id);
 
     List<Attendance> findByPatientId(Long id);
+
+    Attendance create(Attendance attendance);
 }

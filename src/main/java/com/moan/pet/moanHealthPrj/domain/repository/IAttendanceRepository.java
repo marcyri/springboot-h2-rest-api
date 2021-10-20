@@ -11,4 +11,8 @@ public interface IAttendanceRepository {
     List<Attendance> findAll();
 
     Optional<Attendance> findById(Long patientId);
+
+    Attendance create(Attendance attendance);
+
+    Attendance getById(Long attendanceId);
 }

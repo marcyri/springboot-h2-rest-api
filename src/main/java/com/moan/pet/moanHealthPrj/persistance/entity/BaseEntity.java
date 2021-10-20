@@ -1,6 +1,7 @@
 package com.moan.pet.moanHealthPrj.persistance.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
+@Accessors(chain = true)
 @Data
 @MappedSuperclass
 public abstract class BaseEntity {

@@ -34,4 +34,9 @@ public class AttendanceService implements IAttendanceService {
         return Optional.of(attendanceRepository.getAttendancesByPatientId(patientId))
                 .orElseThrow(() -> new NotFoundException("Attendances for patient with id " + patientId));
     }
+
+    @Override
+    public Attendance create(Attendance attendance) {
+        return attendanceRepository.create(attendance);
+    }
 }

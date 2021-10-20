@@ -1,5 +1,6 @@
 package com.moan.pet.moanHealthPrj.domain.repository;
 
+import com.moan.pet.moanHealthPrj.domain.model.Attendance;
 import com.moan.pet.moanHealthPrj.domain.model.Patient;
 
 import java.util.List;
@@ -13,4 +14,7 @@ public interface IPatientRepository {
     List<Patient> getPatientsByAttendanceId(Long attendanceId);
 
     Patient create(Patient patient);
+
+    Patient update(Long id, Patient patient);
+    Patient update(Long id, Attendance attendance);
 }

@@ -35,4 +35,9 @@ public class JpaPatientDao implements IDao<PatientEntity, Long> {
     public PatientEntity save(PatientEntity patient) {
         return jpaPatientRepository.save(patient);
     }
+
+    @Override
+    public PatientEntity getById(Long patientId) {
+        return jpaPatientRepository.getById(patientId);
+    }
 }

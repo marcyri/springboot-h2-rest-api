@@ -48,4 +48,9 @@ public class JdbcPatientDao implements IDao<PatientEntity, Long> {
     public PatientEntity save(PatientEntity patient) {
         return null;
     }
+
+    @Override
+    public PatientEntity getById(Long aLong) {
+        return null;
+    }
 }

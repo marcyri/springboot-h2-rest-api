@@ -8,4 +8,5 @@ public interface IDao<T, ID> {
     Optional<T> findById(ID id);
     List<T> findByAttendances_Id(Long attendanceId);
     T save(T var1);
+    T getById(ID id);
 }

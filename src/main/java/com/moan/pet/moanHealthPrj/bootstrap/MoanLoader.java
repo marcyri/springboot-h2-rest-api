@@ -1,6 +1,6 @@
 package com.moan.pet.moanHealthPrj.bootstrap;
 
-import com.moan.pet.moanHealthPrj.domain.service.impl.PatientService;
+import com.moan.pet.moanHealthPrj.domain.service.IPatientService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MoanLoader implements CommandLineRunner {
-    public final PatientService patientService;
+    public final IPatientService patientService;
 
-    public MoanLoader(PatientService patientService) {
+    public MoanLoader(IPatientService patientService) {
         this.patientService = patientService;
     }
 

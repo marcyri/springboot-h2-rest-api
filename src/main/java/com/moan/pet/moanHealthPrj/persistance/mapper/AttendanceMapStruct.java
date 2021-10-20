@@ -25,6 +25,8 @@ public abstract class AttendanceMapStruct {
         return attendanceEntity.map(this::attendanceEntityToAttendance);
     }
 
+    public abstract AttendanceEntity attendanceToAttendanceEntity(Attendance attendance);
+
     // for PatientMapStruct purpose:
     @Named("AttendanceIgnorePatients")
     @Mapping(target = "patients", ignore = true) // ignore the property - patients

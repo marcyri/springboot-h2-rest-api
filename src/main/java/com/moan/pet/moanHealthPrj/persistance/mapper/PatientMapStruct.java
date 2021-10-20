@@ -26,6 +26,8 @@ public abstract class PatientMapStruct {
         return patientEntity.map(this::patientEntityToPatient);
     }
 
+    public abstract PatientEntity patientToPatientEntity(Patient patient);
+
     // for AttendanceMapStruct purpose:
     @Named("PatientIgnoreAttendances")
     @Mapping(target = "attendances", ignore = true)
@@ -35,5 +37,4 @@ public abstract class PatientMapStruct {
     @IterableMapping(qualifiedByName = "PatientIgnoreAttendances")
     public abstract Set<Patient> patientEntityToPatientIgnoreAttendances(Set<PatientEntity> patientEntities);
 
-    public abstract PatientEntity patientToPatientEntity(Patient patient);
 }
