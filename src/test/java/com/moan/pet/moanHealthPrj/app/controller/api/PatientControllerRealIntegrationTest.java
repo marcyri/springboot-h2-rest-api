@@ -2,6 +2,7 @@ package com.moan.pet.moanHealthPrj.app.controller.api;
 
 import com.moan.pet.moanHealthPrj.app.dto.PatientDTO;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,6 +33,7 @@ class PatientControllerRealIntegrationTest {
     }
 
     @Test
+    @Disabled
     void getPatient() throws Exception {
         String queryUrl = UriComponentsBuilder.fromUriString("http://localhost:" + port)
                 .path("/api/v1/patients").buildAndExpand("").toUriString().trim();

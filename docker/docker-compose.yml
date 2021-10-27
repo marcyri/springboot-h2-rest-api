@@ -1,0 +1,32 @@
+version: "3"
+services:
+  health-prj-rest:
+    container_name: health-prj-rest
+    build: ./health-prj-rest-dockerfile
+    image: health-prj-rest:latest
+    ports:
+      - "81:81"
+      - "8090:8090"
+    networks:
+      - health-prj-network
+    depends_on:
+      - health-prj-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:tcp://health-prj-db:9082/h2database
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.h2.Driver
+      - SPRING_DATASOURCE_USERNAME=moan
+      - SPRING_DATASOURCE_PASSWORD=abcstrng!5
+  health-prj-db:
+    container_name: health-prj-db
+    build: ./health-prj-db-dockerfile
+    image: health-prj-db:latest
+    ports:
+      - "8082:8082"
+      - "9092:9082"
+    networks:
+      - health-prj-network
+
+networks:
+  health-prj-network:
+    external: false
+    name: health-prj-network

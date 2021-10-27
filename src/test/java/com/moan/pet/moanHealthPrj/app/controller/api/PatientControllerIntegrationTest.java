@@ -7,6 +7,7 @@ import com.moan.pet.moanHealthPrj.persistance.dao.JpaAttendanceRepository;
 import com.moan.pet.moanHealthPrj.persistance.dao.impl.JdbcPatientDao;
 import com.moan.pet.moanHealthPrj.persistance.dao.impl.JpaPatientDao;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -47,6 +48,7 @@ class PatientControllerIntegrationTest {
     private RequestBuilder requestBuilder;
 
     @Test
+    @Disabled
     void getPatient() throws Exception {
         requestBuilder = MockMvcRequestBuilders.get("/api/v1/patients")
                 .contentType(MediaType.APPLICATION_JSON);

@@ -11,12 +11,13 @@
     <groupId>com.moan.pet</groupId>
     <artifactId>testHealthPrj</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>springboot-h2-rest-api</name>
     <description>Pet-project for assessment</description>
     <properties>
         <java.version>11</java.version>
         <spring-plugin.version>1.2.0.RELEASE</spring-plugin.version>
+        <docker.health-prj-rest-dockerfile.location>${basedir}\docker\health-prj-rest-dockerfile</docker.health-prj-rest-dockerfile.location>
     </properties>
 
     <dependencies>
@@ -108,6 +109,27 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <configuration>
+                            <target name="copy jar to docker-compose">
+                                <echo>ANT TASK - copying jar to docker-compose....</echo>
+                                <copy file="${project.build.directory}\${project.build.finalName}.${project.packaging}"
+                                      tofile="${docker.health-prj-rest-dockerfile.location}\${name}.jar" />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
