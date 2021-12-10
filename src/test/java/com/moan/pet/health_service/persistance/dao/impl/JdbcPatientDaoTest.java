@@ -11,7 +11,7 @@ import org.springframework.test.context.jdbc.Sql;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @JdbcTest
-@Sql({ "/test_schema.sql", "/import_test_data.sql" })
+@Sql({ "/test_schema.sql", "/test_data.sql" })
 @Slf4j
 class JdbcPatientDaoTest {
 
@@ -19,11 +19,6 @@ class JdbcPatientDaoTest {
 	private JdbcTemplate jdbcTemplate;
 
 	private JdbcPatientDao subject;
-
-	//    @BeforeAll
-	//    static void setup(@Autowired DataSource dataSource, @Autowired PlatformTransactionManager transactionManager) {
-	//        HealthServiceTestConfig.setupDataBase(dataSource, transactionManager);
-	//    }
 
 	@BeforeEach
 	void setUp() {
