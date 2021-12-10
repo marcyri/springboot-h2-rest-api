@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.moan.pet</groupId>
-    <artifactId>testHealthPrj</artifactId>
+    <artifactId>springboot-h2-rest-api-health-prj</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>springboot-h2-rest-api</name>
+    <name>springboot-h2-rest-api-health-prj</name>
     <description>Pet-project for assessment</description>
     <properties>
         <java.version>11</java.version>
@@ -122,7 +122,7 @@
                             <target name="copy jar to docker-compose">
                                 <echo>ANT TASK - copying jar to docker-compose....</echo>
                                 <copy file="${project.build.directory}\${project.build.finalName}.${project.packaging}"
-                                      tofile="${docker.health-prj-rest-dockerfile.location}\${name}.jar" />
+                                      tofile="${docker.health-prj-rest-dockerfile.location}\${name}.jar"/>
                             </target>
                         </configuration>
                         <goals>

@@ -1,4 +1,4 @@
-# springboot-h2-rest-api
+# springboot-h2-rest-api-health-prj
 ## Run application in docker containers. 
 Start:<br />
 ```

@@ -1,0 +1,6 @@
+create user if not exists moan password 'abcstrng!5' admin;
+create TABLE if not exists patient (id integer auto_increment, created_dt_tm TIMESTAMP default CURRENT_TIMESTAMP, updated_dt_tm TIMESTAMP default CURRENT_TIMESTAMP, family_name varchar(255) NOT NULL, name varchar(255) NOT NULL, gender ENUM('male', 'female') default 'male', date_of_birth DATE default NULL, PRIMARY KEY (id));
+create TABLE if not exists  attendance (id integer auto_increment, created_dt_tm TIMESTAMP default CURRENT_TIMESTAMP, updated_dt_tm TIMESTAMP default CURRENT_TIMESTAMP, reason CLOB NOT NULL, diagnosis CLOB default NULL, PRIMARY KEY (id));
+create TABLE if not exists  patients_attendances (patient_id integer NOT NULL, attendance_id integer NOT NULL, PRIMARY KEY (patient_id, attendance_id));
+create TABLE if not exists  attendances_services (attendance_id integer NOT NULL, service_id integer NOT NULL, count int(11) NOT NULL default 1, PRIMARY KEY (attendance_id, service_id));
+create TABLE if not exists  service (id integer auto_increment, created_dt_tm TIMESTAMP default CURRENT_TIMESTAMP, updated_dt_tm TIMESTAMP default CURRENT_TIMESTAMP, parent_id integer default NULL, name varchar(255) NOT NULL, description varchar(600) DEFAULT NULL, PRIMARY KEY (id));
